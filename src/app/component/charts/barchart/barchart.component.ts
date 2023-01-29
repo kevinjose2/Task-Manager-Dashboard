@@ -65,7 +65,7 @@ export class BarchartComponent  {
 ]
   };
 
-  // events
+
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
 
   }
