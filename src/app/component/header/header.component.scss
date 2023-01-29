@@ -1,0 +1,39 @@
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #f6fafb;
+  padding: 25px;
+  box-shadow: 0 0 14px 0px rgb(0 0 0 / 8%);
+  .left-set {
+    width: 30%;
+    img {
+      max-width: 150px;
+    }
+  }
+  .mid-set {
+    width: 40%;
+    text-align: center;
+    h1 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1F5260;
+    }
+  }
+  .right-set {
+    width: 30%;
+    text-align: right;
+    ul {
+        align-items: center;
+        li {
+            display: inline-block;
+            margin-left: 15px;
+            cursor: pointer;
+            img {
+                width: 15px;
+            }
+        }
+    }
+  }
+}

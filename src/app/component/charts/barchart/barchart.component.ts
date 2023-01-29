@@ -1,56 +1,77 @@
-
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,Input } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
+import { SharingdataService } from 'src/app/service/sharingdata.service';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-barchart',
+  templateUrl: './barchart.component.html',
+  styleUrls: ['./barchart.component.scss']
 })
-export class AppComponent {
+export class BarchartComponent  {
+
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
+    indexAxis:'y',
+
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      x: {},
+      x: {
+        display: false,
+       grid:{
+        color: "rgba(0, 0, 0, 0)",
+
+    }
+      },
       y: {
-        min: 10
+        display:true,
+        grid:{
+          color: "rgba(0, 0, 0, 0)",
+      }
+
       }
     },
     plugins: {
       legend: {
         display: true,
+        position: 'bottom',
+        maxHeight:20
+
       },
       datalabels: {
-        anchor: 'end',
-        align: 'end'
-      }
+
+        color:'white'
+      },
+
     }
   };
   public barChartType: ChartType = 'bar';
   public barChartPlugins = [
     DataLabelsPlugin
   ];
-
+  public chartColors: any[] = [
+    {
+      backgroundColor:["#FF7360", "#6FC8CE", "#FAFFF2", "#FFFCC4", "#B9E8E0"]
+    }];
   public barChartData: ChartData<'bar'> = {
-    labels: [ '2006', '2007', '2008', '2009', '2010', '2011', '2012' ],
+    labels: [ 'Stratergic Affairs', 'Healthcare Workforce Sector', 'Healthcare Facilities Sector','Support Services' ],
     datasets: [
-      { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Series A' },
-      { data: [ 28, 48, 40, 19, 86, 27, 90 ], label: 'Series B' }
-    ]
+
+
+
+]
   };
 
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+
   }
 
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+
   }
 
   public randomize(): void {
@@ -66,4 +87,9 @@ export class AppComponent {
 
     this.chart?.update();
   }
+  constructor(public sharingdata:SharingdataService) {
+
+  this.sharingdata.currentsendata.subscribe((response:any)=> {
+    this.barChartData.datasets = response[0]
+  })}
 }

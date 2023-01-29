@@ -1,0 +1,109 @@
+
+
+
+
+<div class="main-wrapper" [class.active]="classApplied">
+<div class="main-sidebar">
+    <button class="burger" (click)="toggleClass()"></button>
+    <div class="sidebar-content">
+      <div class="d-flex align-items-start">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <button class="nav-link active" id="tab-one" data-bs-toggle="pill" data-bs-target="#tab-content-one" type="button" role="tab" aria-controls="tab-content-one" aria-selected="true"><h2>Dashboard</h2></button>
+          <button class="nav-link" id="tab-two" data-bs-toggle="pill" data-bs-target="#tab-content-two" type="button" role="tab" aria-controls="tab-content-two" aria-selected="false"><h2>Tasks</h2></button>
+          <button class="nav-link" id="tab-three" data-bs-toggle="pill" data-bs-target="#tab-content-three" type="button" role="tab" aria-controls="tab-content-three" aria-selected="false"><h2>Calendar</h2></button>
+         </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-content">
+    <app-header></app-header>
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="tab-content-one" role="tabpanel" aria-labelledby="tab-one">
+        <div class="inner-content">
+          <div class="box-data-wrapper">
+            <div class="inner-box">
+              <div class="item-box">
+                  <h2>45</h2>
+                  <p>Total number of tasks</p>
+              </div>
+            </div>
+            <div class="inner-box" *ngFor="let options of progressbaroptions">
+              <div class="item-box">
+                <div>
+                  <circle-progress
+                  [percent]="options.percent"
+                  [radius]="options.radius"
+                  [titleFontWeight]="'900'"
+                  [outerStrokeWidth]="options.outerStrokeWidth"
+                  [innerStrokeWidth]="options.innerStrokeWidth"
+                  [space]="options.space       "
+                  [outerStrokeColor]="options.outerStrokeColor"
+                  [innerStrokeColor]="options.innerStrokeColor"
+                  [showBackground]="false"
+                 [title]="options.title"
+                 [animateTitle]="false"
+                 [showUnits]="false"
+                 [clockwise]="false"
+                 [animationDuration]="1000"
+                 [startFromZero]="false"
+                 [outerStrokeGradient]="true"
+                 [outerStrokeGradientStopColor]="options.outerStrokeGradientStopColor"
+                  [lazy]="true"
+                  [startFromZero]="true"
+                  [showSubtitle]="false"
+                  [clockwise]="true"
+                  [titleFontSize]="'20'"
+
+                ></circle-progress>
+                <p class="sub-text pt-2">{{options.bottomtext}}</p>
+                </div>
+
+
+                  <button><img src="/assets/images/menu.svg"></button>
+                  <p class="sub-titletext">{{options.titletext}}</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="d-flex justify-content-around align-items-center">
+          <div>
+            <h3 class="donut-chart header">Task Distribution</h3>
+            <app-doghnutchart></app-doghnutchart>
+          </div>
+          <div>
+            <h3 class="header">Tasks by Beinex Sectors</h3>
+           <app-barchart></app-barchart>
+
+           </div>
+           <div>
+            <h3 class="header">Tasks by Auraa</h3>
+            <app-personwisechart></app-personwisechart>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab-content-two" role="tabpanel" aria-labelledby="tab-two">sgsg</div>
+      <div class="tab-pane fade" id="tab-content-three" role="tabpanel" aria-labelledby="tab-three">3</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.open()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container> -->
+
